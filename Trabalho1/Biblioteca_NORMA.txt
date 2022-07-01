@@ -1,0 +1,40 @@
+// Biblioteca para NORMA
+
+//--- ZERA A ----------------
+operation zera(A){
+ 1: if zero A then 0 else 2
+ 2: do dec A goto 1
+ }
+//---------------------------
+
+//--- A:=B usando C----------
+operation recebe(A,B,C){
+ 1: if zero B then goto 5 else goto 2
+ 2: do inc A goto 3
+ 3: do inc C goto 4
+ 4: do dec B goto 3 
+ 5: if zero C then goto 0 else goto 6
+ 6: do inc B goto 7 
+ 7: do dec C goto 5
+ }
+//---------------------------
+
+//--- A:= A+B usando C-------
+operation soma(A,B,C){
+  1: if zero B then goto 5 else goto 2
+  2: do dec  B goto 3
+  3: do inc  A goto 4
+  4: do inc  C goto 1
+  5: if zero C then goto 0 else goto 6
+  6: do dec  C goto 7
+  7: do inc  B goto 5
+}
+
+//--- A:=A×B ----------------
+ operation multiplica(A,B,C,D){
+ 1: do recebe(C,X,A) goto 2
+ 2:	if zero C then goto 0 else goto 3
+ 3: do soma(A,X,D) goto 4
+ 4: do dec C goto 2
+ }
+//---------------------------
