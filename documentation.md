@@ -1,6 +1,10 @@
 # Documentação
 ## Operações implementadas
 ---
+> `mov_d(A, B)`
+
+A = B 
+
 > `mov(A, B, C)`
 
 A = B (usando C)
@@ -21,7 +25,7 @@ A = 0
 
 A = A * B (usando C e D)
 
-> `mul2(A, B, C)`
+> `mul2(A, B)`
 
 A = 2 * A (usando C)
 
