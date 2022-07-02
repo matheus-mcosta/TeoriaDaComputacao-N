@@ -1,0 +1,28 @@
+main{
+    1: if zero X then goto 5 else goto 2
+    2: do inc A goto 3
+    3: do inc B goto 4
+    4: do dec X goto 1
+    5: if zero A then goto 17 else goto 6
+    6: if zero C then goto 14 else goto 7
+    7: do dec C goto 8
+    8: do inc X goto 6
+    9: if zero B then goto 10 else goto 7
+    10: do dec B goto 8
+    11: do inc Y goto 9
+    12: do inc C goto 6
+    13: if zero C then goto 13 else goto 11
+    14: do dec C goto 12
+    15: do inc B goto 10
+    16: do dec A goto 5
+    17: if zero X then goto 18 else goto 15
+    18: do dec X goto 16
+    19: do inc Y goto 17
+    20: do inc A goto 14
+    21: if zero A then goto 21 else goto 19
+    22: do dec A goto 20
+    23: do inc X goto 18
+    24: do inc Y goto 0
+}
+
+!!!! CORRIGIR A ORDEM Q ESTÀ BAGUNÇADA !!!!
