@@ -1,0 +1,53 @@
+main{
+    1: do add A 0 goto 2 
+    2: if zero X then goto 15 else goto 3
+    3: if zero A then goto 8 else goto 4
+    4: do dec A goto 5
+    5: do dec X goto 6
+    6: do inc B goto 7
+    7: do inc C goto 2
+    8: if zero B then goto 11 else goto 9
+    9: do dec B goto 10
+    10: do inc X goto 8
+    11: if zero C then goto 14 else goto 12
+    12: do dec C goto 13
+    13: do inc A goto 11
+    14: do inc F goto 30
+    15: if zero A then goto 23 else goto 16
+    16: if zero B then goto 19 else goto 17
+    17: do dec B goto 18
+    18: do inc X goto 16
+    19: if zero C then goto 22 else goto 20
+    20: do dec C goto 21
+    21: do inc A goto 19
+    22: do inc F goto 30
+    23: if zero B then goto 26 else goto 24
+    24: do dec B goto 25
+    25: do inc X goto 23
+    26: if zero C then goto 29 else goto 27
+    27: do dec C goto 28
+    28: do inc A goto 26
+    29: do inc T goto 0
+
+
+
+    30: if zero A then goto 34 else goto 31
+    31: do dec A goto 32
+    32: do inc Y goto 33
+    33: do inc C goto 30
+
+    34: if zero C then goto 37 else goto 35
+    35: do dec C goto 36
+    36: do inc A goto 34
+
+    37: do inc A goto 38
+
+    38: if zero A then goto 42 else goto 39
+    39: do dec A goto 40
+    40: do inc Y goto 41
+    41: do inc C goto 38
+
+    42: if zero C then goto 1 else goto 43
+    43: do dec C goto 44
+    44: do inc A goto 42
+}
