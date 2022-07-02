@@ -75,20 +75,34 @@ operation mul(A,B,C,D){
     4: do dec C goto 5
     5: if zero C then goto 0 else goto 3
 }
-operation mul2(A,B,C){
-    1: do mov(B,A,C) goto 2
-    2: do sum(A,B,C) goto 0
+operation mul2(A,B){
+    1: if zero A then goto 5 else goto 2
+    2: do inc B goto 3
+    3: do inc B goto 4
+    4: do dec A goto 1
+    5: if zero C then goto 0 else goto 6
+    6: do inc A goto 7
+    7: do dec B goto 5
 }
-operation exp2(A,B,C,D){
+operation exp2_(A,B,C,D){
     1: do clr(B) goto 2
     2: do inc B goto 3
     3: do mov(C,A,D) goto 4
     4: if zero C then goto 0 else goto 5
-    5: do mul2(B,D,E) goto 6
+    5: do mul2(B,D) goto 6
     6: do dec C goto 4
 }
 operation coding2(A,B,C,D,E,F){
-    1: do exp2(A,C,D,E) goto 2
+    1: do exp2_(A,C,D,E) goto 2
     2: do coding1(B,D,E) goto 3
     3: do mul(C,D,E,F) goto 0
+}
+
+operation exp2 (A,B,C){
+    1: do mov(B, A, C) goto 2
+    2: do clr(A) goto 3
+    3: do inc A goto 4
+    4: if zero B then goto 0 else goto 5
+    5: do mul2(A,C) goto 6
+    6: do dec C goto 4
 }

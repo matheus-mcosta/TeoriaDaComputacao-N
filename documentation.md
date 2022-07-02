@@ -25,11 +25,11 @@ A = A * B (usando C e D)
 
 A = 2 * A (usando C)
 
-> `exp2_(A, B, C)` _-> not implemented_
+> `exp2(A, B, C)`
 
 A = 2^A (usando B e C)
 
-> `exp2(A, B, C, D)`
+> `exp2_(A, B, C, D)`
 
 B = 2^A (usando C e D)
 
