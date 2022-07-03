@@ -1,0 +1,40 @@
+operation sum(A, B, C){
+    1: if zero B then goto 5 else goto 2
+    2: do dec  B goto 3
+    3: do inc  A goto 4
+    4: do inc  C goto 1
+    5: if zero C then goto 0 else goto 6
+    6: do dec  C goto 7
+    7: do inc  B goto 5
+}
+operation clr(A){
+    1: if zero A then goto 0 else goto 2
+    2: do dec  A goto 1
+}
+
+operation mov(A, B, C){
+    1: do clr(A) goto 2
+    2: do sum(A, B, C) goto 0
+}
+
+operation sub(A,B,C){
+    1: if zero B then goto 5 else goto 2
+    2: do dec  B goto 3
+    3: do dec  A goto 4
+    4: do inc  C goto 1
+    5: if zero C then goto 0 else goto 6
+    6: do dec  C goto 7
+    7: do inc  B goto 5
+}
+
+
+operation ex1b(A,B,C){
+    1: do mov(B, A, C) goto 2
+    2: do dec B goto 3
+    3: if zero B then goto 0 else goto 4
+    4: do sum(A,B,C) goto 2
+}
+main {
+    1: do ex1b(X,B,C) goto 2
+    2: do mov(Y,X,C) goto 0
+}
