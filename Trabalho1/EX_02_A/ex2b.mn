@@ -1,0 +1,60 @@
+operation clr(A){
+    1: if zero A    then goto 0 else goto 2
+    2: do dec  A         goto 1
+}
+
+operation mov_d(A, B){
+    1: do clr(A) goto 2
+    2: if zero B then goto 0 else goto 3
+    3: do inc A goto 4
+    4: do dec B goto 2
+}
+
+
+operation sum(A, B, C){
+    1: if zero B then goto 5 else goto 2
+    2: do dec  B goto 3
+    3: do inc  A goto 4
+    4: do inc  C goto 1
+    5: do mov_d(B,C) goto 0
+}
+
+operation mov(A, B, C){
+    1: do clr(A) goto 2
+    2: do clr(C) goto 3
+    3: do sum(A, B, C) goto 0
+}
+
+test divBy2(A, C){
+    1: do mov_d(C,A)  goto 2
+    2: if zero C then goto true  else goto 3
+    3: do dec  C      goto 4
+    4: do inc  A      goto 5
+    5: if zero C then goto false else goto 6
+    6: do inc  A      goto 7
+    7: do dec  C      goto 2
+}
+
+operation div2(A, C){
+    1: do mov_d(C,A)  goto 2
+    2: if zero C then goto 0 else goto 3
+    3: do dec  C      goto 4
+    4: if zero C then goto 0 else goto 5
+    5: do dec  C      goto 6
+    6: do inc  A      goto 2
+}
+
+operation decod(A, B, C, D, E){
+    1: do clr(B)            goto 2
+    2: do mov(D, A, E)      goto 3
+    3: if divBy2(D, E) then goto 4 else goto 6
+    4: do inc  B            goto 5
+    5: do div2(D, E)        goto 3
+    6: do dec  D            goto 7
+    7: do div2(D, E)        goto 8
+    8: do mov_d(C, D)       goto 0
+}
+
+main{
+    1: do decod(X,A,B,C,D)  goto 0
+}
