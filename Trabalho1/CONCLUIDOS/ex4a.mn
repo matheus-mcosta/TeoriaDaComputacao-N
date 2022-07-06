@@ -1,40 +1,61 @@
-operation zera(A){
- 1: if zero A then goto 0 else goto 2
- 2: do dec A goto 1
- }
-
-operation soma(A,B,C){
-  1: if zero B then goto 5 else goto 2
-  2: do dec  B goto 3
-  3: do inc  A goto 4
-  4: do inc  C goto 1
-  5: if zero C then goto 0 else goto 6
-  6: do dec  C goto 7
-  7: do inc  B goto 5
-}
-
-operation recebe(A,B,C){
- 1a: do zera(A) goto 1
- 1: if zero B then goto 5 else goto 2
- 2: do inc A goto 3
- 3: do inc C goto 4
- 4: do dec B goto 1 
- 5: if zero C then goto 0 else goto 6
- 6: do inc B goto 7 
- 7: do dec C goto 5
- }
-
 main{
 1: do add A 2 goto 2
-2: do add B 1 goto 3
-3: do recebe(C,X,D) goto 4
+2: do add B 1 goto 1ar
+//3: do recebe(C,X,D) goto 4
+ //1ar: do zera(C) goto 1r
+   1ar: if zero C then goto 1r else goto 2ar
+   2ar: do dec C goto 1ar
+ 1r: if zero X then goto 5r else goto 2r
+ 2r: do inc C goto 3r
+ 3r: do inc D goto 4r
+ 4r: do dec X goto 1r
+ 5r: if zero D then goto 4 else goto 6r
+ 6r: do inc X goto 7r
+ 7r: do dec D goto 5r
 4: do dec C goto 5
 5: if zero X then goto 0 else goto 6
-6: if zero C then goto 0 else goto 7
-7: do recebe(Y,A,D) goto 8
-8: do soma(Y,B,D) goto 9
+6: if zero C then goto 0 else goto 1ap
+//7: do recebe(Y,A,D) goto 8
+ //1ap: do zera(Y) goto 1p
+   1ap: if zero Y then goto 1p else goto 2ap
+   2ap: do dec Y goto 1ap
+ 1p: if zero A then goto 5p else goto 2p
+ 2p: do inc Y goto 3p
+ 3p: do inc D goto 4p
+ 4p: do dec A goto 1p 
+ 5p: if zero D then goto 1m else goto 6p
+ 6p: do inc A goto 7p
+ 7p: do dec D goto 5p
+//8: do soma(Y,B,D) goto 9
+  1m: if zero B then goto 5m else goto 2m
+  2m: do dec  B goto 3m
+  3m: do inc  Y goto 4m
+  4m: do inc  D goto 1m
+  5m: if zero D then goto 9 else goto 6m
+  6m: do dec  D goto 7m
+  7m: do inc  B goto 5m
 9: do dec C goto 10
-10: if zero C then goto 0 else goto 11
-11: do recebe(A,B,D) goto 12
-12: do recebe(B,Y,D) goto 7
+10: if zero C then goto 0 else goto 1ao
+//11: do recebe(A,B,D) goto 12
+ //1ao: do zera(A) goto 1o
+   1ao: if zero A then goto 1o else goto 2ao
+   2ao: do dec A goto 1ao
+ 1o: if zero B then goto 5o else goto 2o
+ 2o: do inc A goto 3o
+ 3o: do inc D goto 4o
+ 4o: do dec B goto 1o 
+ 5o: if zero D then goto 1as else goto 6o
+ 6o: do inc B goto 7o 
+ 7o: do dec D goto 5o
+//12: do recebe(B,Y,D) goto 7
+ //1as: do zera(B) goto 1s
+   1as: if zero B then goto 1s else goto 2as
+   2as: do dec B goto 1as
+ 1s: if zero Y then goto 5s else goto 2s
+ 2s: do inc B goto 3s
+ 3s: do inc D goto 4s
+ 4s: do dec Y goto 1s
+ 5s: if zero D then goto 1ap else goto 6s
+ 6s: do inc Y goto 7s
+ 7s: do dec D goto 5s
 }
