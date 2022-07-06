@@ -1,0 +1,110 @@
+operation clr(A){
+    1: if zero A    then goto 0 else goto 2
+    2: do dec  A         goto 1
+}
+
+operation mov_d(A, B){
+    1: do clr(A) goto 2
+    2: if zero B then goto 0 else goto 3
+    3: do inc A goto 4
+    4: do dec B goto 2
+}
+
+operation sum(A, B, C){
+    1: if zero B then goto 5 else goto 2
+    2: do dec  B goto 3
+    3: do inc  A goto 4
+    4: do inc  C goto 1
+    5: do mov_d(B,C) goto 0
+}
+
+operation sub(A,B,C){
+    1: if zero B then goto 5 else goto 2
+    2: do dec  B goto 3
+    3: do dec  A goto 4
+    4: do inc  C goto 1
+    5: if zero C then goto 0 else goto 6
+    6: do dec  C goto 7
+    7: do inc  B goto 5
+}
+
+operation mov(A, B, C){
+    1: do clr(A) goto 2
+    2: do clr(C) goto 3
+    3: do sum(A, B, C) goto 0
+}
+
+operation decAB_incC(A,B,C){
+    1: do dec  A         goto 2
+    2: do dec  B         goto 3
+    3: do inc  C         goto 0
+}
+
+operation incAB_decC(A,B,C){
+    1: do inc  A         goto 2
+    2: do inc  B         goto 3
+    3: do dec  C         goto 0
+}
+
+operation ex1b(A,B,C){
+    1: do mov(B, A, C)   goto 2
+    2: do dec B          goto 3
+    3: if zero B    then goto 0 else goto 4
+    4: do sum(A,B,C)     goto 2
+}
+
+operation coding1(A,B,C){
+    1: do mov(B,A,C)     goto 2
+    2: do sum(B,A,C)     goto 3
+    3: do inc  B         goto 4
+    4: do mov_d(A,B)     goto 0
+}
+
+operation mul(A,B,C,D){
+    // A = A * B
+    1: do mov(C,A,D)     goto 2
+    2: do clr(A)         goto 3
+    3: do sum(A,B,D)     goto 4
+    4: do dec  C         goto 5
+    5: if zero C    then goto 0 else goto 3
+}
+
+operation mul2(A,B){
+    1: do mov_d(B,A)     goto 2
+    2: if zero B    then goto 0 else goto 3
+    3: do inc  A         goto 4
+    4: do inc  A         goto 5
+    5: do dec  B         goto 2
+}
+
+operation exp2(A,B,C){
+    1: do mov_d(B,A)     goto 2
+    2: do inc  A         goto 3
+    3: if zero B    then goto 0 else goto 4
+    4: do mul2(A, C)     goto 5
+    5: do dec  B         goto 3
+}
+
+operation cod(A,B,C,D,E,F){
+    1: do mov(C,A,F)     goto 2    
+    2: do exp2(C,E,F)    goto 3
+    3: do mov(D,B,F)     goto 4
+    4: do coding1(D,E,F) goto 5
+    5: do mul(C,D,E,F)   goto 0
+}
+
+test both_zero(A,B) {
+  1: if zero A then goto 2    else goto false
+  2: if zero B then goto true else goto false
+}
+
+main {
+    1: do add  A 3 goto 2
+    2: do add  B 5 goto 3
+    3: do cod(A,B,C,D,E,F) goto 4
+    4: do mov(Y,C,D) goto 0
+}
+
+
+
+

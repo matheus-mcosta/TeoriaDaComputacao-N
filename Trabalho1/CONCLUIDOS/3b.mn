@@ -72,12 +72,6 @@ operation decod(A, B, C, D, E){
     8: do mov_d(C, D)       goto 0
 }
 
-operation f_3a(A, B, C, D, E){
-    1: do mov(C, A, E) goto 2
-    2: do mul2(C, E) goto 3
-    3: do mul(C, A, D, E) goto 0
-}
-
 test less(A, B, C){
     1: if zero A then goto 5 else goto 2
     2: if zero B then goto 5 else goto 3
