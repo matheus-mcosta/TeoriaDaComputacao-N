@@ -28,7 +28,7 @@ para os testes, temos
 
     main{
         1: do inc  A goto 2
-        2: if zero B than goto 3 else goto 0
+        2: if zero B then goto 3 else goto 0
         3: do inc  B goto 0
     }
 ### subrotinas:
@@ -78,3 +78,32 @@ exemplo:
         1: if zero A then goto 2 else goto 0
         2: do g(A) goto 0
     }
+
+## Transcrevendo laços de repetição para máquina Norma
+ ---
+Laços de repetição, como loops for, while podem ser passados para a máquina norma usando condicionais
+
+![Loop while](while.png)
+
+Dessa forma, o loop 
+
+    while (A != 0){
+        A --;
+    }
+
+pode ser codificado como
+
+    1: if zero A then goto 0 else goto 2
+    2: do dec  A goto 1
+
+Loops como for, podem ser facilmente executados usando um registrador como índice, por exemplo:
+
+    for (i = 0; i < 10; i ++){
+        A ++
+    }
+
+pode ser escrito como:
+
+    1: if cmp  I 9 then goto 0 else goto 2
+    2: do inc  A goto 3
+    3: do inc  I goto 1
