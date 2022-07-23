@@ -1,0 +1,74 @@
+let
+
+    true = \A B. A;
+    false = \A B. B;
+    
+    if = \A B C. A B C;
+
+    not = \B. B false true;
+    and = \b1 b2. if b1 b2 false;
+    or = \b1 b2. if b1 true b2;
+    xor = \b1 b2. if b1 not b2 true;
+
+    succ = \n. \A B. A (n A B);
+    add = \n1 n2. \A B. n1 A (n2 A B);
+    mult = \n1 n2. n1 (\x. add n2 x) 0;
+    exp = \A B. B A;
+    sqr = \A. 2 A;
+
+    isZero = \n. n (\x. false) true;
+    isEven = \n. n not true;
+    isPos = \n. not (isZero n); 
+
+    pair = \A B C. C A B;
+    fst = \A. A true;
+    snd = \A. A false;
+
+    shiftInc = \A. pair (snd A) (succ (snd A)); 
+    pred = \n. fst (n shiftInc (pair 0 0));
+    sub = \A B. B pred A;
+    swap = \A. pair (snd A) (fst A);
+
+    lt = \A. \B. isPos (sub B A);
+    gt = \A. \B. isPos(sub A B);
+    leq = \A. \B. not (gt A B);
+    geq = \A. \B. not (lt A B);
+    eq = \A B. (and (leq A B) (geq A B));
+    
+    empty = \x. true;
+    cons = \A B. pair A B;
+    isEmpty = \A. A (\x y. false);
+    head = fst;
+    tail = snd;
+
+    Y = \f.(\x.f(x x))(\x.f(x x));
+
+    --a)
+    igual = \A B. (and (leq A B) (geq A B));
+
+    --b)
+    polinomio = \A B. add (sqr A) (mult 3 B);
+
+    --c)
+    S_mult4 = \X. \A. if (eq A 0) true (if (gt A 4) (X(sub A 4)) (if (eq A 4) true false));
+    multQuatro = Y S_mult4;
+    
+    --d)
+    invFrac = \P. if (eq (fst P) 0) (pair (fst P)(snd P)) (pair (snd P)(fst P));
+
+
+    --e)
+    multFrac = \P1 P2. pair (mult (fst P1) (fst P2)) (mult (snd P1) (snd P2));
+
+    --f)
+    somaFrac = \P1 P2. pair (add (mult (fst P1) (snd P2)) (mult (snd P1) (fst P2))) (mult (snd P1) (snd P2));
+
+    --g)
+    S_somaLista = \X. \L. if (isEmpty L) 0 (add (head L) (X (tail L)));
+    somaLista = Y S_somaLista;
+
+    --h)
+    S_lucas = \X. \A. if (eq A 0) 2 (if (eq A 1) 1 (add (X (pred A)) (X (pred (pred A)))));
+    lucas = Y S_lucas;
+
+in
