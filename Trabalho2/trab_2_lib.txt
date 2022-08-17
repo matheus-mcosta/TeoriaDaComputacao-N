@@ -56,7 +56,6 @@ let
     --d)
     invFrac = \P. if (eq (fst P) 0) (pair (fst P)(snd P)) (pair (snd P)(fst P));
 
-
     --e)
     multFrac = \P1 P2. pair (mult (fst P1) (fst P2)) (mult (snd P1) (snd P2));
 
